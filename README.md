@@ -7,21 +7,6 @@ A toolkit for testing browser automation engines against modern web protection s
 
 <i>(Need some help with <b>Automation</b>? You can  <a href="https://automation.techinz.dev">hire me</a> for custom development or consulting!)</i>
 
----
-
-<p align="center">
-    <a href="https://www.nstproxy.com/?type=flow&utm_source=techinz" target="_blank">
-        <img width="370" height="370" alt="Image" src="https://github.com/user-attachments/assets/7d6e2275-a9a5-4223-8610-b30f98048fb9" />
-    </a>
-</p>
-
-<b>Nstproxy</b> delivers reliable, scalable, and cost-efficient proxies — <b>residential, datacenter, ISP, and IPv6</b> — with rotation, anti-block tech, and pricing from <b>$0.1/GB</b> for maximum uptime and ROI.  
-👉 Learn more: <a href="https://www.nstproxy.com/?type=flow&utm_source=techinz">Nstproxy.com</a>: https://www.nstproxy.com/?type=flow&utm_source=techinz  | <a href="https://app.nstproxy.com/?utm_source=techinz">Dashboard</a>  
-Telegram: https://t.me/nstproxy Discord: https://discord.gg/5jjWCAmvng   
-Use code: <b>TECHINZ get 10% OFF</b>
-
----
-
 ## 🎯 Overview
 Modern web applications use advanced bot detection like Cloudflare, DataDome, and Imperva to block automated access. This benchmark suite shows how different browser automation engines handle these defenses:
 - **Bypass Success Rate**: Effectiveness against major protection systems
