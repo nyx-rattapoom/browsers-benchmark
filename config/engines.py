@@ -7,6 +7,7 @@ from engines.nodriver.nodriver_engine import NoDriverEngine
 from engines.nodriver.seleniumbase_engine import SeleniumbaseEngine
 from engines.nodriver.zendriver_engine import ZenDriverEngine
 from engines.playwright.camoufox_engine import CamoufoxEngine
+from engines.playwright.cloakbrowser_engine import CloakBrowserEngine
 from engines.playwright.patchright_engine import PatchrightEngine
 from engines.playwright.playwright_engine import PlaywrightEngine
 from engines.playwright.tf_playwright_stealth_engine import TfPlaywrightStealthEngine
@@ -61,6 +62,14 @@ class EnginesSettings(BaseSettings):
             {
                 "class": CamoufoxEngine,
                 "params": {"headless": False, "name": "camoufox"}
+            },
+            {
+                "class": CloakBrowserEngine,
+                "params": {"headless": True, "name": "cloakbrowser_headless"}
+            },
+            {
+                "class": CloakBrowserEngine,
+                "params": {"headless": False, "name": "cloakbrowser"}
             },
             {
                 "class": TfPlaywrightStealthEngine,
