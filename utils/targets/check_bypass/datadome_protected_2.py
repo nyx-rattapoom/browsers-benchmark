@@ -29,8 +29,12 @@ async def check_datadome2_bypass(engine: BrowserEngine, tries: int = 20) -> bool
         if '<html><head><title>403 Forbidden</title></head>' in page_content:
             captcha_loaded_found2, captcha_loaded_html2 = True, '<title>403 Forbidden</title>'
 
-        if any((target_page_loaded_found, captcha_loaded_found, captcha_loaded_found2)):
-            bypass = not (captcha_loaded_found or captcha_loaded_found2)
+        captcha_loaded_found3, captcha_loaded_html3 = False, ''
+        if 'title="DataDome CAPTCHA"' in page_content:
+            captcha_loaded_found3, captcha_loaded_html3 = True, 'Access is temporarily restricted'
+
+        if any((target_page_loaded_found, captcha_loaded_found, captcha_loaded_found2, captcha_loaded_found3)):
+            bypass = not (captcha_loaded_found or captcha_loaded_found2 or captcha_loaded_found3)
             break
 
         logger.info("Datadome bypass 2 not determined yet, retrying...")

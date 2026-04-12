@@ -32,13 +32,13 @@ async def check_datadome_bypass(engine: BrowserEngine, tries: int = 20) -> bool:
             captcha_loaded_found3, captcha_loaded_html3 = True, '<span>This site can’t be reached</span>'
 
         captcha_loaded_found4, captcha_loaded_html4 = False, ''
-        if '<body>' not in page_content:
+        if '<body' not in page_content:
             captcha_loaded_found4, captcha_loaded_html4 = True, '<body> not in page content'
 
         if any((target_page_loaded_found, captcha_loaded_found, captcha_loaded_found2,
-                captcha_loaded_html3, captcha_loaded_found4)):
+                captcha_loaded_found3, captcha_loaded_found4)):
             bypass = not (
-                    captcha_loaded_found or captcha_loaded_found2 or captcha_loaded_html3 or captcha_loaded_found4)
+                    captcha_loaded_found or captcha_loaded_found2 or captcha_loaded_found3 or captcha_loaded_found4)
             break
 
         logger.info("Datadome bypass not determined yet, retrying...")
