@@ -1,12 +1,19 @@
+import copy
 import os
+import warnings
 from typing import Dict, List, Any
 
+import matplotlib.path as _mpath
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import seaborn as sns
 
 from config.report import report_settings
+
+_mpath.Path.__deepcopy__ = lambda self, memo=None: copy.copy(self)
+
+warnings.filterwarnings("ignore", category=FutureWarning, module="seaborn")
 
 
 def generate_bypass_dashboard_image(df: pd.DataFrame, output_dir: str) -> str:
@@ -63,7 +70,7 @@ def generate_recaptcha_score_image(df: pd.DataFrame, output_dir: str) -> str:
     plt.figure(figsize=report_settings.visualization.figure_size_medium)
     plt.title("Recaptcha Scores by Browser", fontsize=16)
 
-    recaptcha_df = df.dropna(subset=["recaptcha_score"])
+    recaptcha_df = df.dropna(subset=["recaptcha_score"]) if "recaptcha_score" in df.columns else df.iloc[0:0]
 
     if recaptcha_df.empty:
         plt.text(0.5, 0.5, "No reCAPTCHA data available",
@@ -95,7 +102,7 @@ def generate_creepjs_image(df: pd.DataFrame, output_dir: str) -> str:
     plt.figure(figsize=report_settings.visualization.figure_size_medium)
     plt.title("CreepJS by Browser", fontsize=16)
 
-    creepjs_df = df.dropna(subset=["creepjs_trust_score"])
+    creepjs_df = df.dropna(subset=["creepjs_trust_score"]) if "creepjs_trust_score" in df.columns else df.iloc[0:0]
 
     if creepjs_df.empty:
         plt.text(0.5, 0.5, "No CreepJS data available",
@@ -126,7 +133,7 @@ def _create_bypass_rate_subplot(df: pd.DataFrame, engine_colors: Dict[str, Any])
 
     plt.subplot(2, 2, 1)
     bypass_by_engine = df.groupby("engine")["bypass"].mean().reset_index()
-    bypass_by_engine["bypass_percent"] = bypass_by_engine["bypass"] * 100
+    bypass_by_engine.loc[:, "bypass_percent"] = bypass_by_engine["bypass"] * 100
     bypass_by_engine = bypass_by_engine.sort_values("bypass_percent", ascending=False)
 
     bars = plt.bar(bypass_by_engine["engine"], bypass_by_engine["bypass_percent"],
@@ -141,7 +148,7 @@ def _create_bypass_rate_subplot(df: pd.DataFrame, engine_colors: Dict[str, Any])
     plt.title("Bypass Rate by Browser", fontsize=16)
     plt.ylabel("Bypass Rate (%)", fontsize=12)
     plt.ylim(0, max(1, max(bypass_by_engine["bypass_percent"])) * 1.15)
-    plt.xticks(rotation=45, ha="right", fontsize=10)
+    plt.gca().tick_params(axis='x', labelrotation=45, labelsize=10)
     plt.grid(axis="y", **report_settings.colors.grid_style)
 
 
@@ -155,12 +162,12 @@ def _create_protection_heatmap_subplot(df: pd.DataFrame, engines: List[str]) -> 
 
     plt.subplot(2, 2, 2)
 
+    df = df.copy()
     if "protection_type" not in df.columns:
-        df = df.copy()
-        df["protection_type"] = df["target"]
+        df.loc[:, "protection_type"] = df["target"]
 
     # ensure bypass column is a number
-    df["bypass"] = pd.to_numeric(df["bypass"], errors="coerce").fillna(0)
+    df.loc[:, "bypass"] = pd.to_numeric(df["bypass"], errors="coerce").fillna(0)
 
     heatmap_data = pd.pivot_table(
         df, values="bypass",
@@ -199,8 +206,8 @@ def _create_resource_usage_subplot(df: pd.DataFrame) -> None:
     # normalize values to make them comparable on same scale
     max_memory = max(0.1, resource_data["avg_memory_mb"].max())
     max_cpu = max(0.1, resource_data["avg_cpu_percent"].max())
-    resource_data["memory_normalized"] = resource_data["avg_memory_mb"] / max_memory * 100
-    resource_data["cpu_normalized"] = resource_data["avg_cpu_percent"] / max_cpu * 100
+    resource_data.loc[:, "memory_normalized"] = resource_data["avg_memory_mb"] / max_memory * 100
+    resource_data.loc[:, "cpu_normalized"] = resource_data["avg_cpu_percent"] / max_cpu * 100
 
     bar1 = plt.bar(x - width / 2, resource_data["memory_normalized"], width,
                    label="Memory", alpha=0.7, color="steelblue")
@@ -217,7 +224,9 @@ def _create_resource_usage_subplot(df: pd.DataFrame) -> None:
 
     plt.title("Resource Usage (Normalized)", fontsize=16)
     plt.ylabel("Usage (% of maximum)", fontsize=12)
-    plt.xticks(x, resource_data["engine"].tolist(), rotation=45, ha="right", fontsize=10)
+    ax = plt.gca()
+    ax.set_xticks(x)
+    ax.set_xticklabels(resource_data["engine"].tolist(), rotation=45, ha="right", fontsize=10)
     plt.legend(loc="upper right")
     plt.grid(axis="y", **report_settings.colors.grid_style)
     plt.ylim(0, 120)
@@ -249,7 +258,7 @@ def _create_load_time_subplot(df: pd.DataFrame) -> None:
     plt.title("Average Page Load Time by Browser", fontsize=16)
     plt.xlabel("Browser", fontsize=12)
     plt.ylabel("Load Time (ms)", fontsize=12)
-    plt.xticks(rotation=45, ha="right")
+    plt.gca().tick_params(axis='x', labelrotation=45)
     plt.grid(axis="y", linestyle="--", alpha=0.7)
 
     # value labels on bars
@@ -269,7 +278,7 @@ def _create_recaptcha_plot(recaptcha_df: pd.DataFrame) -> None:
 
     sns.barplot(x="engine", y="recaptcha_score", hue="engine",
                 data=recaptcha_data, palette="viridis", legend=False)
-    plt.xticks(rotation=45, ha="right", fontsize=10)
+    plt.gca().tick_params(axis='x', labelrotation=45, labelsize=10)
     plt.ylabel("Recaptcha Score (0-1)", fontsize=12)
     plt.ylim(0, 1.05)
 
@@ -305,7 +314,9 @@ def _create_creepjs_plot(creepjs_df: pd.DataFrame) -> None:
     bar2 = plt.bar(x + width / 2, creepjs_data["creepjs_bot_score"], width,
                    label="Bot Score (lower is better)", color=report_settings.colors.failure)
 
-    plt.xticks(x, creepjs_data["engine"].tolist(), rotation=45, ha="right", fontsize=10)
+    ax = plt.gca()
+    ax.set_xticks(x)
+    ax.set_xticklabels(creepjs_data["engine"].tolist(), rotation=45, ha="right", fontsize=10)
     plt.ylabel("Score (0-100%)", fontsize=12)
     plt.ylim(0, 105)
 

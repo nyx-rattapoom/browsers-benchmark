@@ -58,7 +58,7 @@ def _write_bypass_section(f, bypass_df: pd.DataFrame) -> None:
         return
 
     bypass_by_engine = bypass_df.groupby("engine")["bypass"].mean().reset_index()
-    bypass_by_engine["bypass_percent"] = bypass_by_engine["bypass"] * 100
+    bypass_by_engine.loc[:, "bypass_percent"] = bypass_by_engine["bypass"] * 100
     bypass_by_engine = bypass_by_engine.sort_values("bypass_percent", ascending=False)
 
     f.write("| Engine | Bypass Rate (%) |\n")
@@ -101,6 +101,10 @@ def _write_recaptcha_section(f, browser_data_df: pd.DataFrame) -> None:
     """
 
     f.write("## Recaptcha Scores\n\n")
+
+    if browser_data_df.empty or "recaptcha_score" not in browser_data_df.columns:
+        f.write("*No reCAPTCHA data available*\n\n")
+        return
 
     recaptcha_data = browser_data_df.groupby("engine")["recaptcha_score"].mean().reset_index()
 
