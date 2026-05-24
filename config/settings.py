@@ -68,6 +68,11 @@ class Settings(BaseSettings):
     MEDIA_DIR: str = "media"
     SCREENSHOTS_DIR: str = "screenshots"
 
+    # adspower
+    ADSPOWER_API_KEY: str = ""
+    ADSPOWER_BASE_URL: str = "http://local.adspower.net:50325"
+    ADSPOWER_GROUP_ID: str = ""
+
     # constants
     MAX_RETRIES: int = 3  # maximum retries for failed tests
 

@@ -3,9 +3,11 @@ from typing import List, Dict, Any
 from pydantic import BaseModel, Field
 from pydantic_settings import BaseSettings
 
+from config.settings import settings
 from engines.nodriver.nodriver_engine import NoDriverEngine
 from engines.nodriver.seleniumbase_engine import SeleniumbaseEngine
 from engines.nodriver.zendriver_engine import ZenDriverEngine
+from engines.playwright.adspower_engine import AdsPowerEngine
 from engines.playwright.camoufox_engine import CamoufoxEngine
 from engines.playwright.cloakbrowser_engine import CloakBrowserEngine
 from engines.playwright.patchright_engine import PatchrightEngine
@@ -124,6 +126,20 @@ class EnginesSettings(BaseSettings):
             {
                 "class": SeleniumbaseEngine,
                 "params": {"name": "seleniumbase-cdp-chrome"}
+            },
+            {
+                "class": AdsPowerEngine,
+                "params": {"name": "adspower", "headless": False,
+                           "api_key": settings.ADSPOWER_API_KEY,
+                           "base_url": settings.ADSPOWER_BASE_URL,
+                           "group_id": settings.ADSPOWER_GROUP_ID}
+            },
+            {
+                "class": AdsPowerEngine,
+                "params": {"name": "adspower_headless", "headless": True,
+                           "api_key": settings.ADSPOWER_API_KEY,
+                           "base_url": settings.ADSPOWER_BASE_URL,
+                           "group_id": settings.ADSPOWER_GROUP_ID}
             }
         ]
         self.engines.extend(base_engines)

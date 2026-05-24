@@ -21,9 +21,14 @@ Modern web applications use advanced bot detection like Cloudflare, DataDome, an
 - **Amazon** 
 - **Google Search** 
 - **Ticketmaster (Imperva)**
+- **Akamai**
+- **PerimeterX / HUMAN Security**
+- **Kasada**
+- **Reddit**
 - <i>More systems coming soon</i>
 
 ### Browser Engine Support
+- <a href="https://www.adspower.com">**AdsPower**</a> - Anti-detect browser with per-profile fingerprinting. Requires AdsPower desktop app running locally and an API key.
 - <a href="https://playwright.dev">**Playwright**</a> - Microsoft's automation framework (Chrome, Firefox, Safari)
 - <a href="https://camoufox.com">**Camoufox**</a> - Playwright-based
 - <a href="https://github.com/Kaliiiiiiiiii-Vinyzu/patchright-python">**Patchright**</a> - Playwright-based
@@ -214,6 +219,12 @@ Note: If the IP is your proxy's IP - good, your real IP - bad (applicapable only
    patchright install chromium
    ```
 
+   **AdsPower** *(optional)*  
+   1. Download and install [AdsPower](https://www.adspower.com/download) desktop app
+   2. Open AdsPower, go to **Settings → API** and enable the local API
+   3. Copy your API key and set `ADSPOWER_API_KEY` in `.env`
+   4. Keep AdsPower running while the benchmark is active - it manages the browser process
+
 4. **Configure settings**
    ```bash
    cp .env.example .env
@@ -256,6 +267,12 @@ PROXY_MAX_RETRIES=3
 PAGE_LOAD_TIMEOUT_S=90
 PAGE_STABILIZATION_DELAY_S=5
 MAX_RETRIES=3
+
+# AdsPower (optional — only needed if running the adspower engine)
+# Get your API key from AdsPower desktop app: Settings → API
+ADSPOWER_API_KEY=your_api_key_here
+ADSPOWER_BASE_URL=http://local.adspower.net:50325
+ADSPOWER_GROUP_ID=
 ```
 
 ## 📈 Output & Reports
