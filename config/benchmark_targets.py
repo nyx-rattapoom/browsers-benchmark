@@ -10,6 +10,7 @@ from utils.targets.check_bypass.cloudflare_protected import check_cloudflare_byp
 from utils.targets.check_bypass.datadome_protected import check_datadome_bypass
 from utils.targets.check_bypass.datadome_protected_2 import check_datadome2_bypass
 from utils.targets.check_bypass.google_search import check_google_search_bypass
+from utils.targets.check_bypass.akamai_protected import check_akamai_bypass
 from utils.targets.check_bypass.ticketmaster import check_ticketmaster_bypass
 
 
@@ -65,6 +66,12 @@ class BypassTargetsSettings(BaseModel):
                 check_function="check_ticketmaster_bypass",
                 description="Ticketmaster (Imperva) bypass test"
             ),
+            Target(
+                name="akamai_protected",
+                url="https://www.mrporter.com",
+                check_function="check_akamai_bypass",
+                description="Akamai Bot Manager bypass test (Mr Porter)"
+            ),
         ]
     )
 
@@ -76,6 +83,7 @@ class BypassTargetsSettings(BaseModel):
             "check_datadome2_bypass": check_datadome2_bypass,
             "check_amazon_bypass": check_amazon_bypass,
             "check_ticketmaster_bypass": check_ticketmaster_bypass,
+            "check_akamai_bypass": check_akamai_bypass,
         }
     )
 
