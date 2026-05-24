@@ -3,6 +3,7 @@ import os
 import warnings
 from typing import Dict, List, Any
 
+import matplotlib
 import matplotlib.path as _mpath
 import matplotlib.pyplot as plt
 import numpy as np
@@ -12,7 +13,7 @@ import seaborn as sns
 from config.report import report_settings
 
 _mpath.Path.__deepcopy__ = lambda self, memo=None: copy.copy(self)
-
+matplotlib.use('Agg')
 warnings.filterwarnings("ignore", category=FutureWarning, module="seaborn")
 
 
