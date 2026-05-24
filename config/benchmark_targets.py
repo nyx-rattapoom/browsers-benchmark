@@ -11,6 +11,7 @@ from utils.targets.check_bypass.datadome_protected import check_datadome_bypass
 from utils.targets.check_bypass.datadome_protected_2 import check_datadome2_bypass
 from utils.targets.check_bypass.google_search import check_google_search_bypass
 from utils.targets.check_bypass.akamai_protected import check_akamai_bypass
+from utils.targets.check_bypass.kasada_protected import check_kasada_bypass
 from utils.targets.check_bypass.perimeterx_protected import check_perimeterx_bypass
 from utils.targets.check_bypass.ticketmaster import check_ticketmaster_bypass
 
@@ -79,6 +80,12 @@ class BypassTargetsSettings(BaseModel):
                 check_function="check_perimeterx_bypass",
                 description="PerimeterX (HUMAN Security) bypass test (Priceline)"
             ),
+            Target(
+                name="kasada_protected",
+                url="https://www.canadagoose.com/ca/en/home-page",
+                check_function="check_kasada_bypass",
+                description="Kasada bypass test (Canada Goose)"
+            ),
         ]
     )
 
@@ -92,6 +99,7 @@ class BypassTargetsSettings(BaseModel):
             "check_ticketmaster_bypass": check_ticketmaster_bypass,
             "check_akamai_bypass": check_akamai_bypass,
             "check_perimeterx_bypass": check_perimeterx_bypass,
+            "check_kasada_bypass": check_kasada_bypass,
         }
     )
 
