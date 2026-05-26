@@ -83,9 +83,9 @@ class BypassTargetsSettings(BaseModel):
             ),
             Target(
                 name="kasada_protected",
-                url="https://www.canadagoose.com/ca/en/home-page",
+                url="https://www.wizzair.com",
                 check_function="check_kasada_bypass",
-                description="Kasada bypass test (Canada Goose)"
+                description="Kasada bypass test (Wizz Air)"
             ),
             Target(
                 name="reddit",

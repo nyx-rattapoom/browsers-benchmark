@@ -12,6 +12,6 @@ async def check_kasada_bypass(engine: BrowserEngine) -> bool:
 
     await asyncio.sleep(10)
 
-    element_found, element_html = await engine.locator('div[id="site-banner-container"]')
+    element_found, element_html = await engine.locator('div[data-test="main-page-container"]')
 
     return element_found

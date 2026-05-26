@@ -134,8 +134,7 @@ class PlaywrightBase(BrowserEngine):
             raise RuntimeError("Browser not started")
 
         start_time = asyncio.get_event_loop().time()
-        response = await self.page.goto(url, timeout=settings.browser.page_load_timeout_s * 1000,
-                                        wait_until="domcontentloaded")
+        response = await self.page.goto(url, timeout=settings.browser.page_load_timeout_s * 1000)
         end_time = asyncio.get_event_loop().time()
 
         result = {
