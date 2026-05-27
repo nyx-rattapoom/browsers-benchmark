@@ -28,16 +28,16 @@ Modern web applications use advanced bot detection like Cloudflare, DataDome, an
 - <i>More systems coming soon</i>
 
 ### Browser Engine Support
-- <a href="https://www.adspower.com">**AdsPower**</a> - Anti-detect browser with per-profile fingerprinting. Requires AdsPower desktop app running locally and an API key.
-- <a href="https://playwright.dev">**Playwright**</a> - Microsoft's automation framework (Chrome, Firefox, Safari)
-- <a href="https://camoufox.com">**Camoufox**</a> - Playwright-based
-- <a href="https://github.com/Kaliiiiiiiiii-Vinyzu/patchright-python">**Patchright**</a> - Playwright-based
-- <a href="https://github.com/tinyfish-io/tf-playwright-stealth">**Playwright Stealth**</a> - Playwright-based
-- <a href="https://github.com/CloakHQ/cloakbrowser">**CloakBrowser**</a> - Playwright-based
-- <a href="https://www.selenium.dev">**Selenium**</a> - Open-source browser automation framework (apparently deprecated, so it is tested without proxies)
-- <a href="https://seleniumbase.io/">**Seleniumbase**</a> - Open-source professional toolkit for web automation activities
-- <a href="https://github.com/ultrafunkamsterdam/nodriver">**NoDriver**</a> - Open-source browser automation framework (supports only SOCKS5 proxies)
-- <a href="https://github.com/cdpdriver/zendriver">**ZenDriver**</a> - NoDriver-based
+- <a href="https://www.adspower.com">**AdsPower**</a> - <b>(Proprietary)</b> Anti-detect browser with per-profile fingerprinting. Requires AdsPower desktop app running locally and an API key.
+- <a href="https://playwright.dev">**Playwright**</a> - <b>(Open-Source)</b> Microsoft's automation framework (Chrome, Firefox, Safari)
+- <a href="https://camoufox.com">**Camoufox**</a> - <b>(Open-Source)</b> Playwright-based
+- <a href="https://github.com/Kaliiiiiiiiii-Vinyzu/patchright-python">**Patchright**</a> - <b>(Open-Source)</b> Playwright-based
+- <a href="https://github.com/tinyfish-io/tf-playwright-stealth">**Playwright Stealth**</a> - <b>(Open-Source)</b> Playwright-based
+- <a href="https://github.com/CloakHQ/cloakbrowser">**CloakBrowser**</a> - <b>(Open-Source)</b> Playwright-based
+- <a href="https://www.selenium.dev">**Selenium**</a> - <b>(Open-Source)</b> Browser automation framework (apparently deprecated, so it is tested without proxies)
+- <a href="https://seleniumbase.io/">**Seleniumbase**</a> - <b>(Open-Source)</b> Professional toolkit for web automation activities
+- <a href="https://github.com/ultrafunkamsterdam/nodriver">**NoDriver**</a> - <b>(Open-Source)</b> Browser automation framework (supports only SOCKS5 proxies)
+- <a href="https://github.com/cdpdriver/zendriver">**ZenDriver**</a> - <b>(Open-Source)</b> NoDriver-based
 - <i>More engines coming soon. What engine should I add next?</i>
 
 ### Analytics
@@ -57,64 +57,91 @@ Modern web applications use advanced bot detection like Cloudflare, DataDome, an
 
 ## 📊 Sample Results
 This benchmark provides detailed comparative analysis. Here's an excerpt from a recent test run (more in <a href="results/example">results/example</a>):  
-<i>Real IP in this example - 185.213.155.190</i>  
+<i>Real IP in this example - 146.70.188.179</i>  
 <i>Proxy IP in this example is different for each engine</i>
 
 ## Overall Bypass Rate
 | Engine | Bypass Rate (%) |
 |-----------------|----------------:|
-| camoufox | 100.0 |
-| camoufox_headless | 100.0 |
-| cloakbrowser | 83.3 |
-| cloakbrowser_headless | 50.0 |
-| playwright-firefox_headless | 50.0 |
-| playwright-firefox | 50.0 |
-| tf-playwright-stealth-firefox | 50.0 |
+| patchright | 100.0 |
+| cloakbrowser | 90.0 |
+| camoufox_headless | 90.0 |
+| nodriver-chrome | 80.0 |
+| adspower | 80.0 |
+| seleniumbase-cdp-chrome | 80.0 |
+| adspower_headless | 70.0 |
+| tf-playwright-stealth-firefox | 70.0 |
+| tf-playwright-stealth-firefox_headless | 70.0 |
+| zendriver-chrome | 70.0 |
+| cloakbrowser_headless | 60.0 |
+| tf-playwright-stealth-chromium | 60.0 |
+| playwright-chrome | 60.0 |
+| playwright-firefox_headless | 60.0 |
+| playwright-firefox | 60.0 |
+| zendriver-chrome_headless | 60.0 |
 | tf-playwright-stealth-chromium_headless | 50.0 |
 | selenium-chrome__no_proxy | 50.0 |
-| tf-playwright-stealth-chromium | 50.0 |
-| tf-playwright-stealth-firefox_headless | 50.0 |
-| playwright-chrome | 33.3 |
-| playwright-chrome_headless | 33.3 |
-| selenium-chrome_headless__no_proxy | 33.3 |
+| playwright-chrome_headless | 40.0 |
+| nodriver-chrome_headless | 40.0 |
+| patchright_headless | 40.0 |
+| camoufox | 30.0 |
+| selenium-chrome_headless__no_proxy | 30.0 |
 
 
 ## Resource Usage Comparison
 | Engine | Memory Usage (MB) | CPU Usage (%) |
 |-----------------|------------------:|--------------:|
-| playwright-chrome_headless | 493.0 | 12.5 |
-| tf-playwright-stealth-chromium_headless | 498.0 | 15.8 |
-| camoufox_headless | 895.0 | 53.6 |
-| selenium-chrome_headless__no_proxy | 930.0 | 25.2 |
-| tf-playwright-stealth-chromium | 953.0 | 35.3 |
-| cloakbrowser_headless | 964.0 | 24.1 |
-| selenium-chrome__no_proxy | 1025.0 | 43.6 |
-| cloakbrowser | 1060.0 | 49.4 |
-| playwright-chrome | 1097.0 | 27.4 |
-| tf-playwright-stealth-firefox | 1125.0 | 94.9 |
-| tf-playwright-stealth-firefox_headless | 1146.0 | 87.3 |
-| playwright-firefox_headless | 1160.0 | 85.5 |
-| playwright-firefox | 1166.0 | 91.3 |
-| camoufox | 1301.0 | 130.2 |
+| adspower_headless | 123.0 | 4.9 |
+| adspower | 130.0 | 7.0 |
+| playwright-chrome_headless | 517.0 | 7.4 |
+| tf-playwright-stealth-chromium_headless | 522.0 | 8.2 |
+| zendriver-chrome_headless | 818.0 | 21.5 |
+| tf-playwright-stealth-chromium | 913.0 | 28.6 |
+| cloakbrowser_headless | 936.0 | 27.2 |
+| selenium-chrome_headless__no_proxy | 948.0 | 10.1 |
+| zendriver-chrome | 1009.0 | 38.8 |
+| selenium-chrome__no_proxy | 1034.0 | 29.8 |
+| tf-playwright-stealth-firefox_headless | 1034.0 | 44.7 |
+| playwright-firefox_headless | 1068.0 | 70.3 |
+| cloakbrowser | 1082.0 | 54.4 |
+| playwright-chrome | 1103.0 | 28.5 |
+| seleniumbase-cdp-chrome | 1157.0 | 51.9 |
+| playwright-firefox | 1161.0 | 75.5 |
+| camoufox | 1181.0 | 53.3 |
+| tf-playwright-stealth-firefox | 1261.0 | 67.7 |
+| nodriver-chrome_headless | 1275.0 | 24.4 |
+| patchright_headless | 1277.0 | 16.6 |
+| patchright | 1314.0 | 53.3 |
+| camoufox_headless | 1318.0 | 88.6 |
+| nodriver-chrome | 1389.0 | 47.4 |
 
 
 ### Recaptcha Scores - https://antcpt.com/score_detector
 | Engine | Recaptcha Score (0-1) |
 |-----------------|--------------------:|
-| camoufox | 0.90 |
+| adspower | 0.90 |
+| adspower_headless | 0.90 |
 | camoufox_headless | 0.90 |
 | cloakbrowser | 0.90 |
 | cloakbrowser_headless | 0.90 |
+| nodriver-chrome | 0.90 |
+| nodriver-chrome_headless | 0.90 |
+| patchright | 0.90 |
+| patchright_headless | 0.90 |
 | playwright-chrome | 0.90 |
 | playwright-chrome_headless | 0.90 |
 | playwright-firefox | 0.90 |
 | playwright-firefox_headless | 0.90 |
 | selenium-chrome__no_proxy | 0.90 |
 | selenium-chrome_headless__no_proxy | 0.90 |
+| seleniumbase-cdp-chrome | 0.90 |
 | tf-playwright-stealth-chromium | 0.90 |
 | tf-playwright-stealth-chromium_headless | 0.90 |
 | tf-playwright-stealth-firefox | 0.90 |
 | tf-playwright-stealth-firefox_headless | 0.90 |
+| camoufox | nan |
+| zendriver-chrome | nan |
+| zendriver-chrome_headless | nan |
 
 Note 1: "nan" indicates no score was obtained - the website just stopped working when tests were run
 
@@ -130,20 +157,29 @@ And vise versa, with score >= 0.7 it will be much easier.
 ### CreepJS Scores - https://abrahamjuliot.github.io/creepjs
 | Engine | Trust Score (%) | Bot Score (%) | WebRTC IP |
 |-----------------|----------------:|--------------:|----------:|
-| camoufox | 0.00 | 0.00 | 46.150.86.164 |
-| camoufox_headless | 0.00 | 0.00 | 201.162.98.101 |
+| adspower | 0.00 | 0.00 | 90.214.10.188 |
+| adspower_headless | 0.00 | 0.00 | 177.93.10.239 |
+| camoufox_headless | 0.00 | 0.00 | 186.86.110.232 |
 | cloakbrowser | 0.00 | 0.00 |  |
 | cloakbrowser_headless | 0.00 | 0.00 |  |
-| playwright-chrome | 0.00 | 0.00 | 185.213.155.190 |
-| playwright-chrome_headless | 0.00 | 0.00 | 185.213.155.190 |
-| playwright-firefox | 0.00 | 0.00 | 185.213.155.190 |
-| playwright-firefox_headless | 0.00 | 0.00 | 185.213.155.190 |
-| selenium-chrome__no_proxy | 0.00 | 0.00 | 185.213.155.190 |
-| selenium-chrome_headless__no_proxy | 0.00 | 0.00 | 185.213.155.190 |
-| tf-playwright-stealth-chromium | 0.00 | 0.00 | 185.213.155.190 |
-| tf-playwright-stealth-chromium_headless | 0.00 | 0.00 | 185.213.155.190 |
-| tf-playwright-stealth-firefox | 0.00 | 0.00 | 185.213.155.190 |
-| tf-playwright-stealth-firefox_headless | 0.00 | 0.00 | 185.213.155.190 |
+| nodriver-chrome | 0.00 | 0.00 | 146.70.188.179 |
+| nodriver-chrome_headless | 0.00 | 0.00 | 146.70.188.179 |
+| patchright | 0.00 | 0.00 | 146.70.188.179 |
+| patchright_headless | 0.00 | 0.00 | 146.70.188.179 |
+| playwright-chrome | 0.00 | 0.00 | 146.70.188.179 |
+| playwright-chrome_headless | 0.00 | 0.00 | 146.70.188.179 |
+| playwright-firefox | 0.00 | 0.00 | 146.70.188.179 |
+| playwright-firefox_headless | 0.00 | 0.00 | 146.70.188.179 |
+| selenium-chrome__no_proxy | 0.00 | 0.00 | 146.70.188.179 |
+| selenium-chrome_headless__no_proxy | 0.00 | 0.00 | 146.70.188.179 |
+| seleniumbase-cdp-chrome | 0.00 | 0.00 |  |
+| tf-playwright-stealth-chromium | 0.00 | 0.00 | 146.70.188.179 |
+| tf-playwright-stealth-chromium_headless | 0.00 | 0.00 | 146.70.188.179 |
+| tf-playwright-stealth-firefox | 0.00 | 0.00 | 146.70.188.179 |
+| tf-playwright-stealth-firefox_headless | 0.00 | 0.00 | 146.70.188.179 |
+| zendriver-chrome | 0.00 | 0.00 |  |
+| zendriver-chrome_headless | 0.00 | 0.00 |  |
+| camoufox | nan | nan | Not detected |
 
 Note: 
 1. CreepJS disabled trust and bot scores for now - https://github.com/abrahamjuliot/creepjs/issues/292
@@ -153,20 +189,29 @@ Note:
 ### IP (Ipify)
 | Engine | IP |
 |-----------------|----------:|
-| camoufox | 46.150.86.164 |
-| camoufox_headless | 201.162.98.101 |
-| cloakbrowser | 190.93.28.38 |
-| cloakbrowser_headless | 74.56.178.153 |
-| playwright-chrome | 66.140.186.48 |
-| playwright-chrome_headless | 93.148.109.147 |
-| playwright-firefox | 142.183.237.176 |
-| playwright-firefox_headless | 50.96.102.239 |
-| selenium-chrome__no_proxy | 185.213.155.190 |
-| selenium-chrome_headless__no_proxy | 185.213.155.190 |
-| tf-playwright-stealth-chromium | 176.168.168.175 |
-| tf-playwright-stealth-chromium_headless | 78.72.63.77 |
-| tf-playwright-stealth-firefox | 90.99.60.89 |
-| tf-playwright-stealth-firefox_headless | 47.1.214.100 |
+| adspower | 90.214.10.188 |
+| adspower_headless | 177.93.10.239 |
+| camoufox | Not detected |
+| camoufox_headless | 186.86.110.232 |
+| cloakbrowser | 179.0.46.130 |
+| cloakbrowser_headless | 193.5.237.36 |
+| nodriver-chrome | 190.232.219.121 |
+| nodriver-chrome_headless | 91.54.173.199 |
+| patchright | 24.78.176.233 |
+| patchright_headless | 181.46.71.26 |
+| playwright-chrome | 89.247.171.61 |
+| playwright-chrome_headless | 196.65.213.80 |
+| playwright-firefox | 79.8.183.149 |
+| playwright-firefox_headless | 130.0.11.123 |
+| selenium-chrome__no_proxy | 146.70.188.179 |
+| selenium-chrome_headless__no_proxy | 146.70.188.179 |
+| seleniumbase-cdp-chrome | 142.173.54.135 |
+| tf-playwright-stealth-chromium | 212.237.121.217 |
+| tf-playwright-stealth-chromium_headless | 83.168.89.168 |
+| tf-playwright-stealth-firefox | 196.98.139.187 |
+| tf-playwright-stealth-firefox_headless | 45.227.249.248 |
+| zendriver-chrome | 47.234.192.130 |
+| zendriver-chrome_headless | 142.173.61.185 |
 
 Note: If the IP is your proxy's IP - good, your real IP - bad (applicapable only with proxy).
 
