@@ -98,7 +98,7 @@ class BypassTargetsSettings(BaseModel):
                 name="shopee_sg",
                 url="https://shopee.sg/",
                 check_function="check_shopee_bypass",
-                description="Shopee Singapore traffic verification redirect benchmark",
+                description="Shopee Singapore traffic verification redirect bypass test",
             ),
         ]
     )
